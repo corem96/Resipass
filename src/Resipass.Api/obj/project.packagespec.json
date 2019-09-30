@@ -14,7 +14,14 @@
     ],
     "frameworks": {
       "netcoreapp2.1": {
-        "projectReferences": {}
+        "projectReferences": {
+          "F:\\Desarrollo\\Lab\\Web\\ASP.NET\\Resipass\\src\\Resipass.Data\\Resipass.Data.csproj": {
+            "projectPath": "F:\\Desarrollo\\Lab\\Web\\ASP.NET\\Resipass\\src\\Resipass.Data\\Resipass.Data.csproj"
+          },
+          "F:\\Desarrollo\\Lab\\Web\\ASP.NET\\Resipass\\src\\Resipass.Domain\\Resipass.Domain.csproj": {
+            "projectPath": "F:\\Desarrollo\\Lab\\Web\\ASP.NET\\Resipass\\src\\Resipass.Domain\\Resipass.Domain.csproj"
+          }
+        }
       }
     },
     "warningProperties": {
@@ -36,6 +43,22 @@
           "suppressParent": "All",
           "target": "Package",
           "version": "[2.1.2, )"
+        },
+        "Microsoft.EntityFrameworkCore": {
+          "target": "Package",
+          "version": "[2.1.1, )"
+        },
+        "Microsoft.EntityFrameworkCore.Design": {
+          "target": "Package",
+          "version": "[2.1.1, )"
+        },
+        "Microsoft.EntityFrameworkCore.Relational": {
+          "target": "Package",
+          "version": "[2.1.1, )"
+        },
+        "Microsoft.EntityFrameworkCore.SqlServer": {
+          "target": "Package",
+          "version": "[2.1.1, )"
         },
         "Microsoft.NETCore.App": {
           "suppressParent": "All",
