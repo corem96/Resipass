@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Resipass.Domain", "src\Resipass.Domain\Resipass.Domain.csproj", "{C4F412A0-E985-465F-837B-F09D314151A8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Resipass.Api", "src\Resipass.Api\Resipass.Api.csproj", "{1F6F3064-EF44-4DFA-91FB-2A9FA97FFF87}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Resipass.Data", "src\Resipass.Data\Resipass.Data.csproj", "{D395F16F-B633-47B4-A0C9-B50071E093FE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C4F412A0-E985-465F-837B-F09D314151A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4F412A0-E985-465F-837B-F09D314151A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4F412A0-E985-465F-837B-F09D314151A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4F412A0-E985-465F-837B-F09D314151A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F6F3064-EF44-4DFA-91FB-2A9FA97FFF87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F6F3064-EF44-4DFA-91FB-2A9FA97FFF87}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F6F3064-EF44-4DFA-91FB-2A9FA97FFF87}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F6F3064-EF44-4DFA-91FB-2A9FA97FFF87}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D395F16F-B633-47B4-A0C9-B50071E093FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D395F16F-B633-47B4-A0C9-B50071E093FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D395F16F-B633-47B4-A0C9-B50071E093FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D395F16F-B633-47B4-A0C9-B50071E093FE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
