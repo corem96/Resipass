@@ -5,10 +5,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="contexto" />
-    </ItemGroup>
-
-    <ItemGroup>
       <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.1.1" />
       <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="2.1.1" />
       <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="2.1.1" />
