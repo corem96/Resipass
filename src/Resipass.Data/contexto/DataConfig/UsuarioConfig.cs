@@ -4,7 +4,7 @@ using Resipass.Domain.modelos.Usuario;
 
 namespace Resipass.Data.contexto.DataConfig
 {
-    public class UserConfig : IEntityTypeConfiguration<Usuario>
+    public class UsuarioConfig : IEntityTypeConfiguration<Usuario>
     {
         public void Configure(EntityTypeBuilder<Usuario> builder)
         {
@@ -14,7 +14,14 @@ namespace Resipass.Data.contexto.DataConfig
                 .IsRequired()
                 .HasMaxLength(70);
             builder.Property(x => x.Apellido)
-                .IsRequired();
+                .IsRequired()
+                .HasMaxLength(70);
+            builder.Property(x => x.NombreUsuario)
+                .IsRequired()
+                .HasMaxLength(20);
+            builder.Property(x => x.Password)
+                .IsRequired()
+                .HasMaxLength(20);
         }
     }
 }
