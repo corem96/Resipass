@@ -1,3 +1,6 @@
+using System.Collections;
+using System.Collections.Generic;
+
 namespace Resipass.Domain.modelos.Residente
 {
     public class Residente
@@ -10,5 +13,8 @@ namespace Resipass.Domain.modelos.Residente
 
         public int DomicilioId { get; set; }
         public Domicilio.Domicilio Domicilio { get; set; }
+
+        public ICollection<Tarjeta.Tarjeta> Tarjetas { get; set; }
+        public ICollection<RegistroPago.RegistroPago> RegistroPagos { get; set; }
     }
 }
