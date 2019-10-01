@@ -18,9 +18,9 @@ namespace Resipass.Api.Api.Residente
             _dbContext = dbContext;
         }
         
-        public IActionResult Index()
+        public async Task<IActionResult> ObtenerTodo()
         {
-            return Ok();
+            return Ok(await _dbContext.Residentes.ToListAsync());
         }
 
         [HttpPost]
