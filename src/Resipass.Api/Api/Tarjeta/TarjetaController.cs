@@ -19,7 +19,7 @@ namespace Resipass.Api.Api.Tarjeta
         }
         
         [HttpGet]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> ObtenerTodo()
         {
             return Ok(await _dbContext.Tarjetas.ToListAsync());
         }
