@@ -13,6 +13,7 @@ namespace Resipass.Domain.modelos.RegistroPago
         public Tarjeta.Tarjeta Tarjeta { get; set; }
 
         public DateTime FechaPago { get; set; }
+        public DateTime FechaVencimiento { get; set; }
         public decimal Importe { get; set; }
     }
 }

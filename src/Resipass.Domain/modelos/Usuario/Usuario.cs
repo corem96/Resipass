@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace Resipass.Domain.modelos.Usuario
 {
     public class Usuario
@@ -7,5 +9,7 @@ namespace Resipass.Domain.modelos.Usuario
         public string Apellido { get; set; }
         public string NombreUsuario { get; set; }
         public string Password { get; set; }
+
+        public ICollection<Aviso.Aviso> Avisos { get; set; }
     }
 }
