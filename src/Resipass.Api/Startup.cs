@@ -30,6 +30,16 @@ namespace Resipass.Api
                 });
             services.AddDbContext<AppDbContext>(opt =>
                 opt.UseSqlServer(Configuration.GetConnectionString("Default")));
+            services.AddCors(opt =>
+            {
+                opt.AddPolicy("VueCorsPolicy", builder =>
+                {
+                    builder.AllowAnyHeader()
+                        .AllowAnyMethod()
+                        .AllowCredentials()
+                        .WithOrigins("http://localhost:8080");
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -44,6 +54,7 @@ namespace Resipass.Api
                 app.UseHsts();
             }
 
+            app.UseCors("VueCorsPolicy");
             app.UseHttpsRedirection();
             app.UseMvc();
         }
