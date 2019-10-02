@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -23,15 +24,16 @@ namespace Resipass.Api.Api.Usuario
             return Ok(await _dbContext.Tarjetas.ToListAsync());
         }
 
-        [HttpGet("login")]
-        public async Task<IActionResult> Login([FromQuery] string nombreUsuario, string password)
+        [HttpPost("login")]
+        public async Task<IActionResult> Login([FromBody] UsuarioLogin usuarioLogin)
         {
             if (!ModelState.IsValid)
                 return BadRequest(new {Error = InvalidDataString});
 
             var usuario = await _dbContext.Usuarios
-                .FirstOrDefaultAsync(x => x.NombreUsuario == nombreUsuario
-                                                                       && x.Password == password);
+                    .Where(x => x.NombreUsuario == usuarioLogin.NombreUsuario
+                                && x.Password == usuarioLogin.Password)
+                    .FirstOrDefaultAsync();
 
             if (usuario == null)
                 return NotFound();
