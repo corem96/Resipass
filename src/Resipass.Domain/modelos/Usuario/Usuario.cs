@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace Resipass.Domain.modelos.Usuario
 {
@@ -10,6 +11,7 @@ namespace Resipass.Domain.modelos.Usuario
         public string NombreUsuario { get; set; }
         public string Password { get; set; }
 
+        [JsonIgnore]
         public ICollection<Aviso.Aviso> Avisos { get; set; }
     }
 }
