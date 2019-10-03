@@ -1,5 +1,6 @@
 using System;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Resipass.Data.contexto;
@@ -18,7 +19,7 @@ namespace Resipass.Api.Api.Tarjeta
             _dbContext = dbContext;
         }
         
-        [HttpGet]
+        [HttpGet, Authorize]
         public async Task<IActionResult> ObtenerTodo()
         {
             return Ok(await _dbContext.Tarjetas.ToListAsync());
