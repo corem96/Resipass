@@ -32,6 +32,8 @@ bld/
 [Oo]bj/
 [Oo]bj/[Rr]elease/
 [Ll]og/
+/src/Resipass.Api/[Bb]in/
+/scr/Resipass.Api/[Oo]bj/
 
 # Visual Studio 2015/2017 cache/options directory
 .vs/
