@@ -30,21 +30,16 @@ namespace Resipass.Api.Api.Auth
             if (loginDatos.EsUsuarioAdmin)
             {
                 var usuario = AutentificarUsuario(loginDatos);
-                
                 if (usuario == null)
                     return NotFound("usuario inexistente");
-            }
-            else
-            {
-                var residente = AutentificarResidente(loginDatos);
-
-                if (residente == null)
-                    return NotFound("residente inexistente");
                 
-                return Ok(residente);
+                return Ok(usuario);
             }
-
-            return NotFound();
+            var residente = AutentificarResidente(loginDatos);
+            if (residente == null)
+                return NotFound("residente inexistente");
+                
+            return Ok(residente);
         }
 
         private UsuarioModel AutentificarUsuario(UsuarioLogin loginDatos)
