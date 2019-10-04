@@ -23,23 +23,6 @@ namespace Resipass.Api.Api.Usuario
         {
             return Ok(await _dbContext.Tarjetas.ToListAsync());
         }
-
-        [HttpPost("login")]
-        public async Task<IActionResult> Login([FromBody] UsuarioLogin usuarioLogin)
-        {
-            if (!ModelState.IsValid)
-                return BadRequest(new {Error = InvalidDataString});
-
-            var usuario = await _dbContext.Usuarios
-                    .Where(x => x.NombreUsuario == usuarioLogin.NombreUsuario
-                                && x.Password == usuarioLogin.Password)
-                    .FirstOrDefaultAsync();
-
-            if (usuario == null)
-                return NotFound();
-
-            return Ok(usuario);
-        }
         
         [HttpPost]
         public async Task<IActionResult> Crear([FromBody] UsuarioModel modelo)
