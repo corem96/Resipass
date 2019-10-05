@@ -21,7 +21,7 @@ namespace Resipass.Api.Api.Auth
             _dbContext = dbContext;
         }
         
-        [HttpPost("login")]
+        [HttpPost]
         public IActionResult Login([FromBody] UsuarioLogin loginDatos)
         {
             if (!ModelState.IsValid)

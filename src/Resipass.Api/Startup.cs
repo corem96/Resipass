@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -12,12 +13,15 @@ using Microsoft.Extensions.FileProviders;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json.Serialization;
 using Resipass.Data.contexto;
+using Resipass.Middleware;
+using VueCliMiddleware;
 
 namespace Resipass.Api
 {
     public class Startup
     {
         public IConfiguration Configuration { get; }
+        private const string AllowedOrigins = "AllowedOrigins";
 
         public Startup(IConfiguration configuration)
         {
@@ -36,14 +40,18 @@ namespace Resipass.Api
                 });
             services.AddDbContext<AppDbContext>(opt =>
                 opt.UseSqlServer(Configuration.GetConnectionString("Default")));
+            services.AddSpaStaticFiles(configuration =>
+            {
+                configuration.RootPath = Configuration["clientUi:path"];
+            });
             services.AddCors(opt =>
             {
-                opt.AddPolicy("VueCorsPolicy", builder =>
+                opt.AddPolicy(AllowedOrigins, builder =>
                 {
                     builder.AllowAnyHeader()
                         .AllowAnyMethod()
-                        .AllowCredentials()
-                        .WithOrigins("http://localhost:8080");
+                        .AllowAnyOrigin();
+//                        .WithOrigins("http://localhost:8080");
                 });
             });
         }
@@ -60,15 +68,29 @@ namespace Resipass.Api
                 app.UseHsts();
             }
 
+            var UiPath = Configuration["clientUi:path"];
+            if (!Directory.Exists(UiPath))
+                throw new Exception($"La ruta de la aplicación frontend no existe: {Path.GetFullPath(UiPath)}");
+            
             app.UseHttpsRedirection();
-            app.UseStaticFiles();
+            app.UseCors(AllowedOrigins);
+//            app.UseCors();
+//            app.UseStaticFiles();
+            app.UseSpaStaticFiles();
             app.UseStaticFiles(new StaticFileOptions
             {
                 FileProvider = new PhysicalFileProvider(
-                    Path.Combine(Directory.GetCurrentDirectory()))
+                    Path.Combine(Directory.GetCurrentDirectory(), UiPath))
             });
-            app.UseCors(builder => builder.WithOrigins("http://localhost"));
-            app.UseHttpsRedirection();
+//            app.UseSpa(spa =>
+//            {
+//                spa.Options.SourcePath = UiPath;
+//                spa.UseProxyToSpaDevelopmentServer("http://localhost:8080");
+////                spa.UseVueCli(npmScript: "serve", port: 8080);
+////                spa.Options.SourcePath = UiPath;
+////                if (env.IsDevelopment())
+////                    spa.UseVueDevelopmentServer(npmScript: "serve");
+//            });
             app.UseMvc();
         }
     }
