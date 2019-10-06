@@ -29,6 +29,8 @@ namespace Resipass.Api.Api.Domicilio
             ModelState.Remove("Id");
             if (!ModelState.IsValid)
                 return BadRequest(new {Error = InvalidDataString});
+            if (string.IsNullOrEmpty(modelo.Direccion) && string.IsNullOrEmpty(modelo.Numero))
+                return BadRequest("Datos vacios o incorrectos");
 
             try
             {
