@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace Resipass.Domain.modelos.Domicilio
 {
@@ -8,7 +9,9 @@ namespace Resipass.Domain.modelos.Domicilio
         public string Direccion { get; set; }
         public string Numero { get; set; }
 
+        [JsonIgnore]
         public ICollection<Residente.Residente> Residentes { get; set; }
+        [JsonIgnore]
         public ICollection<Tarjeta.Tarjeta> Tarjetas { get; set; }
     }
 }
