@@ -1,3 +1,5 @@
+using Newtonsoft.Json;
+
 namespace Resipass.Domain.modelos.Aviso
 {
     public class Aviso
@@ -6,6 +8,7 @@ namespace Resipass.Domain.modelos.Aviso
         public string Comunicado { get; set; }
 
         public int UsuarioId { get; set; }
+        [JsonIgnore]
         public Usuario.Usuario Usuario { get; set; }
     }
 }
