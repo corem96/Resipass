@@ -1,8 +1,12 @@
 using System;
+using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Resipass.Api.Api.ViewModels;
 using Resipass.Data.contexto;
 using TarjetaModel = Resipass.Domain.modelos.Tarjeta.Tarjeta;
 
@@ -12,17 +16,21 @@ namespace Resipass.Api.Api.Tarjeta
     public class TarjetaController : Controller
     {
         private readonly AppDbContext _dbContext;
+        private readonly IMapper _mapper;
         private const string InvalidDataString = "invalid data";
 
-        public TarjetaController(AppDbContext dbContext)
+        public TarjetaController(AppDbContext dbContext, IMapper mapper)
         {
             _dbContext = dbContext;
+            _mapper = mapper;
         }
         
         [HttpGet]
         public async Task<IActionResult> ObtenerTodo()
         {
-            return Ok(await _dbContext.Tarjetas.ToListAsync());
+            return Ok(await _dbContext.Tarjetas
+                    .ProjectTo<TarjetaVm>(_mapper.ConfigurationProvider)
+                .ToListAsync());
         }
         
         [HttpPost]
