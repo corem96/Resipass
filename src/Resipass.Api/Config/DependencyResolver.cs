@@ -20,7 +20,7 @@ namespace Resipass.Api.Config
 
         private void ConfigureServices(IServiceCollection services)
         {
-            // Revistra env y configura servicioss
+            // Revisa env y configura servicios
             services.AddTransient<IEnvironmentService, EnvironmentService>();
             services.AddTransient<IConfigurationService, ConfigurationService>
             (provider => new ConfigurationService(provider.GetService<IEnvironmentService>())
