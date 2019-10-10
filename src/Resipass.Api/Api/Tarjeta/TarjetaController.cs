@@ -30,7 +30,15 @@ namespace Resipass.Api.Api.Tarjeta
         {
             return Ok(await _dbContext.Tarjetas
                     .ProjectTo<TarjetaVm>(_mapper.ConfigurationProvider)
-                .ToListAsync());
+                    .ToListAsync());
+        }
+
+        [HttpGet("tarjeta-residente")]
+        public async Task<IActionResult> ObtenerTarjetaResidente([FromQuery] int residenteId)
+        {
+            return Ok(await _dbContext.Tarjetas
+                    .Where(x => x.ResidenteId == residenteId)
+                    .SingleOrDefaultAsync());
         }
         
         [HttpPost]
