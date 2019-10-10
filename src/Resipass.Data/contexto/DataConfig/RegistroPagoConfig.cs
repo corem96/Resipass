@@ -16,10 +16,19 @@ namespace Resipass.Data.contexto.DataConfig
             });
             builder.Property(x => x.FechaPago)
                 .IsRequired()
-                .HasDefaultValue(DateTime.UtcNow);
+                .HasDefaultValueSql("GETUTCDATE()");
             builder.Property(x => x.FechaVencimiento)
                 .IsRequired()
-                .HasDefaultValue(DateTime.UtcNow.AddDays(30));
+                .HasDefaultValueSql("DATEADD(month, 1, GETUTCDATE())");
+            builder.Property(x => x.Cajero)
+                .IsRequired()
+                .HasMaxLength(150);
+            builder.Property(x => x.Sucursal)
+                .IsRequired();
+            builder.Property(x => x.NumeroAutorizacion)
+                .IsRequired();
+            builder.Property(x => x.NumeroFolio)
+                .IsRequired();
             builder.Property(x => x.Importe)
                 .IsRequired()
                 .HasDefaultValue(300);

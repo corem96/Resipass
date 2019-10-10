@@ -13,5 +13,9 @@ namespace Resipass.Domain.modelos.RegistroPago
         public DateTime FechaPago { get; set; }
         public DateTime FechaVencimiento { get; set; }
         public decimal Importe { get; set; }
+        public string NumeroFolio { get; set; }
+        public string NumeroAutorizacion { get; set; }
+        public string Sucursal { get; set; }
+        public string Cajero { get; set; }
     }
 }
