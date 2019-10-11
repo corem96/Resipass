@@ -1,13 +1,16 @@
 using System;
+using Newtonsoft.Json;
 
 namespace Resipass.Domain.modelos.RegistroPago
 {
     public class RegistroPago
     {
         public int ResidenteId { get; set; }
+        [JsonIgnore]
         public Residente.Residente Residente { get; set; }
 
         public int TarjetaId { get; set; }
+        [JsonIgnore]
         public Tarjeta.Tarjeta Tarjeta { get; set; }
 
         public DateTime FechaPago { get; set; }
