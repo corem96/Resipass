@@ -38,6 +38,7 @@ namespace Resipass.Api.Api.Tarjeta
         {
             return Ok(await _dbContext.Tarjetas
                     .Where(x => x.ResidenteId == residenteId)
+                    .ProjectTo<TarjetaVm>(_mapper.ConfigurationProvider)
                     .SingleOrDefaultAsync());
         }
         
