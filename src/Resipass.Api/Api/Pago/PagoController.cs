@@ -20,12 +20,17 @@ namespace Resipass.Api.Api.Pago
         }
 
         [HttpGet("reporte-pagos")]
-        public async Task<IActionResult> ReportePagos([FromQuery] int tarjetaId)
+        public async Task<IActionResult> ReportePagos([FromQuery] int residenteId)
         {
+            var tarjeta = await _dbContext.Tarjetas
+                .Where(x => x.ResidenteId == residenteId)
+                .SingleOrDefaultAsync();
+            
             return Ok(await _dbContext.RegistroPagos
-                .Where(x => x.FechaPago >= DateTime.Now.AddMonths(-12)
-                            && x.FechaPago <= DateTime.Now
-                            && x.TarjetaId == tarjetaId)
+                .Where(x =>
+                    x.FechaPago >= DateTime.Now.AddMonths(-12)
+                    && x.FechaPago <= DateTime.Now
+                    && x.TarjetaId == tarjeta.Id)
                 .ToListAsync());
         }
         
