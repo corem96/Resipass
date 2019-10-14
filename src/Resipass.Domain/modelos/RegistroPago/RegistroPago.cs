@@ -5,11 +5,9 @@ namespace Resipass.Domain.modelos.RegistroPago
 {
     public class RegistroPago
     {
-        public int ResidenteId { get; set; }
-        [JsonIgnore]
-        public Residente.Residente Residente { get; set; }
-
+        public int Id { get; set; }
         public int TarjetaId { get; set; }
+        
         [JsonIgnore]
         public Tarjeta.Tarjeta Tarjeta { get; set; }
 

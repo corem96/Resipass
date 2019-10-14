@@ -9,11 +9,8 @@ namespace Resipass.Data.contexto.DataConfig
     {
         public void Configure(EntityTypeBuilder<RegistroPago> builder)
         {
-            builder.HasKey(registropago => new
-            {
-                registropago.ResidenteId,
-                registropago.TarjetaId
-            });
+            builder.ToTable("registroPago")
+                .HasKey(x => x.Id);
             builder.Property(x => x.FechaPago)
                 .IsRequired()
                 .HasDefaultValueSql("GETUTCDATE()");
@@ -32,10 +29,6 @@ namespace Resipass.Data.contexto.DataConfig
             builder.Property(x => x.Importe)
                 .IsRequired()
                 .HasDefaultValue(300);
-            builder.HasOne(x => x.Residente)
-                .WithMany(x => x.RegistroPagos)
-                .HasForeignKey(x => x.ResidenteId)
-                .OnDelete(DeleteBehavior.Restrict);
             builder.HasOne(x => x.Tarjeta)
                 .WithMany(x => x.RegistroPagos)
                 .HasForeignKey(x => x.TarjetaId)
