@@ -11,6 +11,8 @@ namespace Resipass.Domain.modelos.RegistroPago
         [JsonIgnore]
         public Tarjeta.Tarjeta Tarjeta { get; set; }
 
+        public string TarjetaCodigo => Tarjeta.Codigo;
+
         public DateTime FechaPago { get; set; }
         public DateTime FechaVencimiento { get; set; }
         public decimal Importe { get; set; }
