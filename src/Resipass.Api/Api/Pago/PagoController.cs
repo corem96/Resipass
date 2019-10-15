@@ -33,7 +33,17 @@ namespace Resipass.Api.Api.Pago
                     && x.TarjetaId == tarjeta.Id)
                 .ToListAsync());
         }
-        
+
+        [HttpGet("pagos-mes")]
+        public async Task<IActionResult> ReportePagosMensual()
+        {
+            return Ok(await _dbContext.RegistroPagos
+                .Where(x =>
+                    x.FechaPago >= DateTime.Now.AddMonths(-1).AddDays(1)
+                    && x.FechaPago <= DateTime.Now.AddMonths(1).AddDays(-1))
+                .Include(x => x.Tarjeta)
+                .ToListAsync());
+        }
         
         [HttpPost]
         public async Task<IActionResult> CrearPago([FromBody] RegistroPago modelo)
