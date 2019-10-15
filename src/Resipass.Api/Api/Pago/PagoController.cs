@@ -37,10 +37,13 @@ namespace Resipass.Api.Api.Pago
         [HttpGet("pagos-mes")]
         public async Task<IActionResult> ReportePagosMensual()
         {
+            var ini = DateTime.Now.AddDays(- (DateTime.Now.Day - 1)).Date;
+            var fin = ini.AddMonths(1).AddDays(-1).Date;
+            
             return Ok(await _dbContext.RegistroPagos
                 .Where(x =>
-                    x.FechaPago >= DateTime.Now.AddMonths(-1).AddDays(1)
-                    && x.FechaPago <= DateTime.Now.AddMonths(1).AddDays(-1))
+                    x.FechaPago >= ini
+                    && x.FechaPago <= fin)
                 .Include(x => x.Tarjeta)
                 .ToListAsync());
         }
